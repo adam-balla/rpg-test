@@ -2,8 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\hero.cs">
     <Files>
-      <File FileName="Assets\Scripts\hero.cs" Line="90" Column="21" />
-      <File FileName="Assets\Scripts\Npc.cs" Line="36" Column="26" />
+      <File FileName="Assets\Scripts\hero.cs" Line="42" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

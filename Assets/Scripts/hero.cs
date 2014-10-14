@@ -21,6 +21,13 @@ public class hero : MonoBehaviour
 				anim = GetComponent<Animator> ();
 				HeroLayer = GetComponent<SpriteRenderer> ();
 		}
+
+
+		void onTriggerLeave2D (Collider2D c){
+			if (c.gameObject.name == "mouse") {
+				IsNearNPC = false;
+			}
+		}
 	
 	
 		void OnTriggerEnter2D (Collider2D c)
@@ -32,7 +39,7 @@ public class hero : MonoBehaviour
 		
 				if (c.gameObject.name == "02door") {
 						Camera.main.transform.position = new Vector3 (0, 0, -1);	
-						transform.position = new Vector3 (-6.60f, -2f, 0f);
+						transform.position = new Vector3 (-6.60f, -3f, 0f);
 				}
 				if (c.gameObject.name == "door3") {
 						Camera.main.transform.position = new Vector3 (0, -24, -1);	
@@ -47,7 +54,6 @@ public class hero : MonoBehaviour
 				if (c.gameObject.name == "door5") {
 						Camera.main.transform.position = new Vector3 (0, -36, -1);	
 						transform.position = new Vector3 (-9f, -36.5f, -0.5f);
-			
 				}
 		
 				if (c.gameObject.name == "door6") {
@@ -83,36 +89,34 @@ public class hero : MonoBehaviour
 						Camera.main.transform.position = new Vector3 (0, -60, -1);	
 						transform.position = new Vector3 (6.2f, -62.1f, -0.5f);
 				}
-				Debug.Log (c.gameObject.name);
 				if (c.gameObject.name == "OutSide") {
 						HeroLayer.sortingOrder = 0;
 				}
 				if (c.gameObject.name == "InnnerSide") {
 						HeroLayer.sortingOrder = 2;
 				}
-				
-				if ((c.name == "NPC") || (c.name == "NPC_1") || (c.name == "NPC_2") || (c.name == "NPC_3") || (c.name == "NPC_4")) {
-						if ((c.name == "NPC_1")) {
-								HeroLayer.sortingOrder = 2;
-								//2
+
+				if (c.gameObject.name == "mouse") {
+					IsNearNPC = true;
+					if (c.gameObject.name == "mouse") {
+						if (c.gameObject.transform.position.y < this.gameObject.transform.position.y) {
+							HeroLayer.sortingOrder = 0;
+						} else {
+							HeroLayer.sortingOrder = 2;
 						}
-						if ((c.name == "NPC_2")) {
-								HeroLayer.sortingOrder = 0;
-								//0
-						}
-						IsNearNPC = true;
-						Debug.Log ("NPC");
-				} else if (c.name == "NPC_Not") {
-						IsNearNPC = false;
+					}
 				}
-		
+				/*} else if (c.name == "NPC_Not") {
+						IsNearNPC = false;
+				}*/
+
 		}
+
 		bool IsHorizontal;
-		bool  IsVertical;
+		bool IsVertical;
 		// Update is called once per frame
 		void Update ()
 		{
-		
 //				if (transform .position.y >= -14) {
 //						
 //				} else if (transform .position.y <= -15) {
