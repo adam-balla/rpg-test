@@ -41,7 +41,12 @@ public class Npc : MonoBehaviour
 				
 				if (Vector3.Distance (transform.position, waypoints [targetwaypoint].position) <= waypointRadius) {
 			
-			
+			if (transform.position.x - waypoints[targetwaypoint].position.x < 0 ){
+				transform.localScale = new Vector3(-1, 1, 1);
+			}
+			else{
+				transform.localScale = new Vector3(1, 1, 1);
+			}
 						targetwaypoint++;
 //						Debug.Log ("Check : " + targetwaypoint + " : " + waypoints.Length);
 						if (targetwaypoint >= waypoints.Length) {
