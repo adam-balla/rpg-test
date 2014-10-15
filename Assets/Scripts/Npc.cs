@@ -40,19 +40,20 @@ public class Npc : MonoBehaviour
 				currentHeading = Vector3.Lerp (currentHeading, targetHeading, damping * Time.deltaTime);
 				
 				if (Vector3.Distance (transform.position, waypoints [targetwaypoint].position) <= waypointRadius) {
-			
-			if (transform.position.x - waypoints[targetwaypoint].position.x < 0 ){
+
+
+//----------3.)	NPC helyes irányba nézése:
+			if (waypoints[(targetwaypoint+1)%waypoints.Length].position.x - waypoints[targetwaypoint].position.x > 0 ){
 				transform.localScale = new Vector3(-1, 1, 1);
 			}
 			else{
 				transform.localScale = new Vector3(1, 1, 1);
 			}
+//--------------------
 						targetwaypoint++;
-//						Debug.Log ("Check : " + targetwaypoint + " : " + waypoints.Length);
 						if (targetwaypoint >= waypoints.Length) {
 								targetwaypoint = 0;
-				
-//								Debug.Log ("Check 2");
+
 								if (!loop) {
 										enabled = false;
 								}

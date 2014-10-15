@@ -28,7 +28,21 @@ public class hero : MonoBehaviour
 				IsNearNPC = false;
 			}
 		}
-	
+
+
+//----------1.)	NPC és  Player renderelési sorrendje:
+		void onTriggerStay2D (Collider2D c){
+			if (c.gameObject.name == "mouse") {
+				if (c.gameObject.name == "mouse") {
+					if (c.gameObject.transform.position.y < this.gameObject.transform.position.y) {
+						HeroLayer.sortingOrder = 0;
+					} else {
+						HeroLayer.sortingOrder = 2;
+					}
+				}
+			}
+		}
+//--------------------
 	
 		void OnTriggerEnter2D (Collider2D c)
 		{
@@ -89,13 +103,18 @@ public class hero : MonoBehaviour
 						Camera.main.transform.position = new Vector3 (0, -60, -1);	
 						transform.position = new Vector3 (6.2f, -62.1f, -0.5f);
 				}
+//----------2.)	Player és háttérbeli objektumok renderelési sorrendje:
 				if (c.gameObject.name == "OutSide") {
 						HeroLayer.sortingOrder = 0;
 				}
 				if (c.gameObject.name == "InnnerSide") {
 						HeroLayer.sortingOrder = 2;
 				}
+//--------------------
 
+
+
+//----------1.)	NPC és  Player renderelési sorrendje:
 				if (c.gameObject.name == "mouse") {
 					IsNearNPC = true;
 					if (c.gameObject.name == "mouse") {
@@ -106,9 +125,7 @@ public class hero : MonoBehaviour
 						}
 					}
 				}
-				/*} else if (c.name == "NPC_Not") {
-						IsNearNPC = false;
-				}*/
+//--------------------
 
 		}
 
@@ -117,11 +134,6 @@ public class hero : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-//				if (transform .position.y >= -14) {
-//						
-//				} else if (transform .position.y <= -15) {
-//						HeroLayer.sortingOrder = 2;
-//				}
 		
 				if (Mathf.Abs (Input.GetAxis ("Horizontal")) > 0.001) {
 						transform.position = Vector3.Lerp (transform.position, transform.position + new Vector3 (0.5f * Input.GetAxis ("Horizontal"), 0, 0), Mathf.Abs (Input.GetAxis ("Horizontal")) * speed * Time.deltaTime);
@@ -145,40 +157,6 @@ public class hero : MonoBehaviour
 				if (IsTalking) {
 						Mouse.transform.eulerAngles = new Vector3 (0, 0, 0);
 				}
-//		Physics.sp
-//		Physics2D.
-//		if(Physics2D.CircleCast)
-				//	Debug.Log (Input.GetAxis ("Vertical").ToString ());
-		
-		
-				//		if (Input.GetKey(KeyCode.DownArrow)) {
-				////			transform.position=new Vector3(0,transform.position.y-0.5f);
-				//			transform.position=Vector3.Lerp(transform.position,new Vector3(transform.position.x,transform.position.y-0.5f,0),Time.deltaTime*7);
-				//		
-				//			y=-1;
-				//		}
-				//
-				//		if (Input.GetKey(KeyCode.UpArrow)) {
-				//			//			transform.position=new Vector3(0,transform.position.y-0.5f);
-				//			transform.position=Vector3.Lerp(transform.position,new Vector3(transform.position.x,transform.position.y+0.5f,0),Time.deltaTime*7);
-				//		
-				//			y=1;
-				//		}
-				//
-				//		if (Input.GetKey(KeyCode.LeftArrow)) {
-				//			//			transform.position=new Vector3(0,transform.position.y-0.5f);
-				//			transform.position=Vector3.Lerp(transform.position,new Vector3(transform.position.x-0.5f,transform.position.y),Time.deltaTime*7);
-				//
-				//			x=-1;
-				//		}
-				//
-				//		if (Input.GetKey (KeyCode.RightArrow)) {
-				//			//			transform.position=new Vector3(0,transform.position.y-0.5f);
-				//			transform.position = Vector3.Lerp (transform.position, new Vector3 (transform.position.x + 0.5f,transform.position.y), Time.deltaTime *7);
-				//
-				//			x=1;
-				//				
-				//         }
 				
 		}
 }
